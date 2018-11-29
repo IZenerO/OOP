@@ -14,8 +14,6 @@ public class Character : Unit {
     private float lives = 5;
     [SerializeField]
     private float jumpForce = 100.0F;
-    [SerializeField]
-    
 
     private int _prevTimeStamp = 0;
     
@@ -27,7 +25,7 @@ public class Character : Unit {
     private SpriteRenderer sprite;
 
     private bool isGrounded = false;
-   
+
     private CharState State
     {
         get { return (CharState)animator.GetInteger("State"); }
@@ -65,18 +63,18 @@ public class Character : Unit {
 
     private void Jump()
     {
-        rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-        
+        rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);        
     }
 
     private void Shoot()
     {
-        Vector3 position = transform.position; position.y += 0.8F; //position.x += -0.5F;
+        Vector3 position = transform.position; position.y += 0.8F; position.x += 0.5F * (sprite.flipX ? -1.0F : 1.0F);
         Bullet newBullet = Instantiate(bullet, position, bullet.transform.rotation) as Bullet;
+        
 
         newBullet.Parent = gameObject;
         newBullet.Direction = newBullet.transform.right * (sprite.flipX ? -1.0F : 1.0F);
-
+        
     }
 
     public override void ReceiveDamage()
@@ -84,7 +82,7 @@ public class Character : Unit {
         var timeStamp = Environment.TickCount;
         _prevTimeStamp = _prevTimeStamp == 0 ? timeStamp : _prevTimeStamp;
 
-        if (TimeSpan.FromTicks(timeStamp - _prevTimeStamp).TotalMilliseconds < 0.1F && _prevTimeStamp != timeStamp)// где 2000, миллисекунды, или же 2 секунды
+        if (TimeSpan.FromTicks(timeStamp - _prevTimeStamp).TotalMilliseconds < 0.1F && _prevTimeStamp != timeStamp)
         {
             return;
         }
@@ -117,7 +115,8 @@ public class Character : Unit {
         if (unit) ReceiveDamage();
         if (lives == 0)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene("Start");
+            // Application.LoadLevel(Application.loadedLevel);
         }
     }
 
