@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private GameObject parent;
-    public GameObject Parent { set { parent = value;} }
+    public GameObject Parent { set { parent = value;} get { return parent; }  }
     private float speed = 10.0F;
     private Vector3 direction;
     public Vector3 Direction { set { direction = value; } }
@@ -14,7 +14,6 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
-        
     }
 
     private void Start()
@@ -32,6 +31,8 @@ public class Bullet : MonoBehaviour
 
         if (unit && unit.gameObject != parent)
         {
+            //unit.ReceiveDamage();
+            
             Destroy(gameObject);
         }
     }

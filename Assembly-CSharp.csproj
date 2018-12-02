@@ -58,7 +58,9 @@
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\DefaultMonster.cs" />
      <Compile Include="Assets\Scripts\Monster.cs" />
+     <Compile Include="Assets\Scripts\MonsterBullet.cs" />
      <Compile Include="Assets\Scripts\MovableM.cs" />
+     <Compile Include="Assets\Scripts\ShootableMonster.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>E:/UnityProjects/Test1/OOP/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

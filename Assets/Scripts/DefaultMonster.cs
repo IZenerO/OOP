@@ -5,7 +5,7 @@ using UnityEngine;
 public class DefaultMonster : Unit
 {
     [SerializeField]
-    private float lives = 2.0F;
+    public float lives = 2.0F;
 
     protected virtual void Awake() { }
     protected virtual void Start() { }

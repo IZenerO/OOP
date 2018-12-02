@@ -19,7 +19,7 @@ public class Character : Unit {
     
     [SerializeField]
     private Bullet bullet;
-
+    
     new private Rigidbody2D rigidbody;
     private Animator animator;
     private SpriteRenderer sprite;
@@ -70,7 +70,6 @@ public class Character : Unit {
     {
         Vector3 position = transform.position; position.y += 0.8F; position.x += 0.5F * (sprite.flipX ? -1.0F : 1.0F);
         Bullet newBullet = Instantiate(bullet, position, bullet.transform.rotation) as Bullet;
-        
 
         newBullet.Parent = gameObject;
         newBullet.Direction = newBullet.transform.right * (sprite.flipX ? -1.0F : 1.0F);
@@ -82,7 +81,7 @@ public class Character : Unit {
         var timeStamp = Environment.TickCount;
         _prevTimeStamp = _prevTimeStamp == 0 ? timeStamp : _prevTimeStamp;
 
-        if (TimeSpan.FromTicks(timeStamp - _prevTimeStamp).TotalMilliseconds < 0.1F && _prevTimeStamp != timeStamp)
+        if (TimeSpan.FromTicks(timeStamp - _prevTimeStamp).TotalMilliseconds < 0.2F && _prevTimeStamp != timeStamp)
         {
             return;
         }

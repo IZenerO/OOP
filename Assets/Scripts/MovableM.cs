@@ -8,8 +8,6 @@ public class MovableM : DefaultMonster
     [SerializeField]
     private float speed = 2.0F;
 
-    [SerializeField]
-    private Bullet bullet;
 
     private SpriteRenderer sprite;
     private Vector3 direction;
@@ -22,8 +20,7 @@ public class MovableM : DefaultMonster
 
     protected override void Awake()
     {
-        bullet = Resources.Load<Bullet>("Bullet");
-        sprite = GetComponentInChildren<SpriteRenderer>();
+      sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected override void Start()
