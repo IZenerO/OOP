@@ -9,11 +9,24 @@ using System;
 public class Character : Unit {
 
     [SerializeField]
-    private float speed = 3.0F;
+    private float speed = 4.0F;
     [SerializeField]
-    private float lives = 5;
+    private int lives = 5;
+
+    public int Lives
+    {
+        get { return lives; }
+        set
+        {
+            if (value <= 5) lives = value;
+            livesbar.Refresh();
+        }
+    }
+
+    private LivesBar livesbar;
+
     [SerializeField]
-    private float jumpForce = 100.0F;
+    private float jumpForce = 15.0F;
 
     private int _prevTimeStamp = 0;
     
@@ -40,6 +53,7 @@ public class Character : Unit {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        livesbar = FindObjectOfType<LivesBar>();
     }
 
     private void Update()
@@ -87,14 +101,14 @@ public class Character : Unit {
         }
         
         _prevTimeStamp = timeStamp;
-
-        lives--;
+        
+        Lives--;
         Debug.Log(lives);
         
   
         rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(transform.up * 9.0F, ForceMode2D.Impulse);
-        rigidbody.AddForce(transform.right * (sprite.flipX ? -1.0F : 1.0F) * speed * -9.0F, ForceMode2D.Impulse);
+        rigidbody.AddForce(transform.up * 8.0F, ForceMode2D.Impulse);
+        rigidbody.AddForce(transform.right * (sprite.flipX ? -1.0F : 1.0F) * speed * -8.0F, ForceMode2D.Impulse);
 
     }
 
@@ -115,7 +129,7 @@ public class Character : Unit {
         if (lives == 0)
         {
             SceneManager.LoadScene("Start");
-            // Application.LoadLevel(Application.loadedLevel);
+            
         }
     }
 

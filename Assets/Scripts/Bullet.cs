@@ -31,8 +31,6 @@ public class Bullet : MonoBehaviour
 
         if (unit && unit.gameObject != parent)
         {
-            //unit.ReceiveDamage();
-            
             Destroy(gameObject);
         }
     }
